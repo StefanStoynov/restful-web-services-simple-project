@@ -1,5 +1,6 @@
 package com.ss.restfulwebservices.user;
 
+import antlr.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -31,6 +32,18 @@ public class UserDaoService {
     public User findUser(int id){
         for (User user : users) {
             if (user.getId() == id){
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public User findUserByName(String name){
+        if (name.isEmpty() && name.isBlank()){
+            return null;
+        }
+        for (User user : users) {
+            if (user.getName().equals(name)){
                 return user;
             }
         }

@@ -4,13 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.util.UriComponents;
 
 import java.net.URI;
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
-
-import static org.springframework.web.servlet.function.ServerResponse.created;
 
 @RestController
 public class UserResource {
@@ -36,9 +32,33 @@ public class UserResource {
         return user;
     }
 
+    //retrieve userById
+    //GET http://localhost:8080/users?id=1
+    @RequestMapping(value = "/users", params = "id")
+    //@RequestParam - used to get request parameter wit name id (?id=1)
+    public User retrieveUserById(@RequestParam int id){
+        User user = userService.findUser(id);
+        if (user == null) {
+            throw new UserNotFoundException("id -" + id);
+        }
+        return user;
+    }
+
+    //retrieve userByName
+    //GET http://localhost:8080/users?name=Stefan
+    @RequestMapping(value = "/users", params = "name")
+    public User retrieveUserByName(@RequestParam String name){
+        User user = userService.findUserByName(name);
+        if (user == null) {
+            throw new UserNotFoundException("name -" + name);
+        }
+        return user;
+    }
+
+
     //input - details of user
     //output - CREATED & Return the created URI
-    //@RequestBody - what is pass from the request body will be mapped to User
+    //@RequestBody - what is pass from the request BODY will be mapped to User
     @PostMapping("/users")
     public ResponseEntity<Object> createUser(@RequestBody User user){
         User savedUser = userService.save(user);
@@ -52,4 +72,10 @@ public class UserResource {
        return ResponseEntity.created(location).build();
 
     }
+
+//    @GetMapping("/users/{name}")
+//    public User retrieveUserByName(@PathVariable String name){
+//        User user = userService.findUserByName(name);
+//        return user;
+//    }
 }
