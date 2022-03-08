@@ -7,6 +7,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponents;
 
 import java.net.URI;
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 
 import static org.springframework.web.servlet.function.ServerResponse.created;
@@ -28,7 +29,11 @@ public class UserResource {
     //GET /users/{id}
     @GetMapping("/users/{id}")
     public User retrieveUser(@PathVariable int id){
-        return userService.findUser(id);
+        User user = userService.findUser(id);
+        if (user == null) {
+            throw new UserNotFoundException("id -" + id);
+        }
+        return user;
     }
 
     //input - details of user
@@ -37,9 +42,10 @@ public class UserResource {
     @PostMapping("/users")
     public ResponseEntity<Object> createUser(@RequestBody User user){
         User savedUser = userService.save(user);
-        //build URI
+        //build URI http://localhost:8080/users/4
         URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest().path("/{id}")
+                .fromCurrentRequest()
+                .path("/{id}")
                 .buildAndExpand(savedUser.getId())
                 .toUri();
 
