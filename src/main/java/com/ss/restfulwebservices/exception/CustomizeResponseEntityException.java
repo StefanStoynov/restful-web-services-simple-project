@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.Date;
 
+//this class should be created if Spring error handling(ResponseEntityExceptionHandler) is not good enough for our project
 @ControllerAdvice
 @RestController
 public class CustomizeResponseEntityException extends ResponseEntityExceptionHandler {

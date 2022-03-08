@@ -24,3 +24,6 @@ In this project we will implement following RESTful Web Services:
   - What does dispatcher servlet do? -> Handles all the requests and returns response
   - How does the HelloWorldBean object get converted to Json? -> Jackson bean
   - Who is configuring the error mapping? -> Spring boot autoconfiguration
+
+#Error Handling
+see folder exception
