@@ -2,6 +2,8 @@ package com.ss.restfulwebservices.user;
 
 import com.ss.restfulwebservices.post.Post;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -9,9 +11,11 @@ import java.util.List;
 
 public class User {
     private Integer id;
-
+    @Size(min = 2, message = "minimum length of the name is two characters")
     private String name;
 
+    //validation for birthday must be in the past
+    @Past
     private Date birthDate;
 
     private List<Post> posts;

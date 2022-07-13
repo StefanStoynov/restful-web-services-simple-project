@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -69,8 +70,9 @@ public class UserController {
     //input - details of user
     //output - CREATED & Return the created URI
     //@RequestBody - what is pass from the request BODY tab will be mapped to User
+    //@Valid - adds validation on user see validation on User class properties
     @PostMapping("/users")
-    public ResponseEntity<Object> createUser(@RequestBody User user){
+    public ResponseEntity<Object> createUser(@Valid @RequestBody User user){
         User savedUser = userRepository.save(user);
         //build URI http://localhost:8080/users/4
         URI location = ServletUriComponentsBuilder
