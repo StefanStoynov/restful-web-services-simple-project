@@ -18,12 +18,12 @@ In this project we will implement following RESTful Web Services:
     - Create a posts for a User     - POST /users/{id}/posts
     - Retrieve details of a post    - GET /users/{id}/posts/{post_id}
 
-#Questions and Answers
+#Questions and Answers <br>
   - What is dispatcher servlet? -> Knows all about the mappings
   - Who is configuring dispatcher servlet? -> Spring boot
   - What does dispatcher servlet do? -> Handles all the requests and returns response
   - How does the HelloWorldBean object get converted to Json? -> Jackson bean
   - Who is configuring the error mapping? -> Spring boot autoconfiguration
 
-#Error Handling
+#Error Handling <br>
 see folder exception

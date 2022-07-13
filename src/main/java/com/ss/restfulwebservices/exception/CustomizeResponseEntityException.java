@@ -12,10 +12,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.Date;
 
 //this class should be created if Spring error handling(ResponseEntityExceptionHandler) is not good enough for our project
+//@ControllerAdvice - with this annotation we can share it between all controllers
 @ControllerAdvice
 @RestController
 public class CustomizeResponseEntityException extends ResponseEntityExceptionHandler {
-
+    //Exception has a specific syntax - see how there are declared into ResponseEntityExceptionHandler
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(
