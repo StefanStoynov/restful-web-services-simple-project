@@ -1,6 +1,8 @@
 package com.ss.restfulwebservices.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -24,13 +26,30 @@ public class UserController {
 
     //retrieve user(int id)
     //GET /users/{id}
+//    @GetMapping("/users/{id}")
+//    public User retrieveUser(@PathVariable int id){
+//        User user = userRepository.findUser(id);
+//        if (user == null) {
+//            throw new UserNotFoundException("id -" + id);
+//        }
+//        return user;
+//    }
+
+    //EntityModel<User> depend on dependency hateoas
+    //with this method we are adding additional link to all users
     @GetMapping("/users/{id}")
-    public User retrieveUser(@PathVariable int id){
+    public EntityModel<User> retrieveUser(@PathVariable int id){
         User user = userRepository.findUser(id);
         if (user == null) {
             throw new UserNotFoundException("id -" + id);
         }
-        return user;
+         EntityModel<User> model = EntityModel.of(user);
+        //link to all users
+        WebMvcLinkBuilder linkToUsers = WebMvcLinkBuilder
+                .linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).retrieveAllUsers());
+        //add link to model
+        model.add(linkToUsers.withRel("all-users"));
+        return model;
     }
 
     //delete user by id (int id)
