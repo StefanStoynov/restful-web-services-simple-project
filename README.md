@@ -27,3 +27,8 @@ In this project we will implement following RESTful Web Services:
 
 #Error Handling <br>
 see folder exception
+
+#Swagger
+when we use hateoas there is additional dependency
+documentation - https://springdoc.org/
+localhost url - http://localhost:8080/swagger-ui/index.html

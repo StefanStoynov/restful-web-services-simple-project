@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-//tell the Spring that this class is Controller
+//tells the Spring that this class is Controller
 @RestController
 public class HelloWorldController {
     //GET
