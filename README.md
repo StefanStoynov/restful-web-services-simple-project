@@ -1,5 +1,5 @@
 # restful-web-services-simple-project
-REST - REpresentational State Transfer
+REST - REpresentational State Transfer<br>
 REST is a style of software architecture for distributed hypermedia systems
 
 #Description of the project:
@@ -29,6 +29,11 @@ In this project we will implement following RESTful Web Services:
 see folder exception
 
 #Swagger
-when we use hateoas there is additional dependency
-documentation - https://springdoc.org/
-localhost url - http://localhost:8080/swagger-ui/index.html
+when we use hateoas there is additional dependency<br>
+documentation - https://springdoc.org/<br>
+localhost url - http://localhost:8080/swagger-ui/index.html<br>
+
+#Hal Explorer
+provides a visualization for actuator, works with <b>hateoas dependency<b> <br>
+localhost:8080 <br>
+http://localhost:8080/explorer/index.html#uri=/actuator
