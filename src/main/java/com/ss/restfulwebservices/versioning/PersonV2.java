@@ -1,0 +1,20 @@
+package com.ss.restfulwebservices.versioning;
+//In version 2 we have the name as Object
+public class PersonV2 {
+    private Name name;
+
+    public PersonV2() {
+    }
+
+    public PersonV2(Name name) {
+        this.name = name;
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public void setName(Name name) {
+        this.name = name;
+    }
+}
