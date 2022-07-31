@@ -1,15 +1,25 @@
 package com.ss.restfulwebservices.user;
 
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ss.restfulwebservices.post.Post;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class User {
+
+    @Id
+    @GeneratedValue
     private Integer id;
     @Size(min = 2, message = "minimum length of the name is two characters")
     private String name;
@@ -18,15 +28,27 @@ public class User {
     @Past
     private Date birthDate;
 
+    //mappedBy = "user" - field mapped to in User.class
+    @OneToMany(mappedBy = "user")
+    //prevent recursive return
+    @JsonIgnore
     private List<Post> posts;
 
     protected User() {
     }
 
-    public User(Integer id, String name, Date birthDate, List<Post> posts) {
+    public User(Integer id, String name, Date birthDate) {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
+        this.posts = new ArrayList<>();
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
 
@@ -42,10 +64,6 @@ public class User {
         return name;
     }
 
-    public List<Post> getPosts() {
-        return Collections.unmodifiableList(posts);
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -58,9 +76,6 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    public void setPosts(Post post) {
-        this.posts.add(post);
-    }
 
     @Override
     public String toString() {
@@ -68,7 +83,6 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", birthDate=" + birthDate +
-                ", posts: " + posts +
                 '}';
     }
 }

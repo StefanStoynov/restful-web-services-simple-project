@@ -14,9 +14,9 @@ In this project we will implement following RESTful Web Services:
     - Create a User                 - POST /users
     - Retrieve one User             - GET /users/{id} -> /users/1
     - Delete a User                 - DELETE /users/{id} -> /users/1
-    - Retrieve all posts for a User - GET /users/{id}/posts
-    - Create a posts for a User     - POST /users/{id}/posts
-    - Retrieve details of a post    - GET /users/{id}/posts/{post_id}
+    - Retrieve all messages for a User - GET /users/{id}/messages
+    - Create a messages for a User     - POST /users/{id}/messages
+    - Retrieve details of a message    - GET /users/{id}/messages/{post_id}
 
 #Questions and Answers <br>
   - What is dispatcher servlet? -> Knows all about the mappings
